@@ -19,7 +19,7 @@ resource "azurerm_virtual_network" "network-vnet" {
 resource "azurerm_subnet" "vm-subnet" {
   name                 = "nginx-vm-subnet"
   address_prefixes     = [var.vm-subnet-cidr]
-  virtual_network_name = azurerm_resource_group.network-vnet.name
+  virtual_network_name = azurerm_virtual_network.network-vnet.name
   resource_group_name  = azurerm_resource_group.network-gr.name
 }
 

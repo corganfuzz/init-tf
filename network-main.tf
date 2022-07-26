@@ -1,7 +1,7 @@
 # Main Resource Group
 
 resource "azurerm_resource_group" "network-gr" {
-  name     = "nginx-network-rg"
+  name     = "nginx-network-gr"
   location = var.location
 }
 

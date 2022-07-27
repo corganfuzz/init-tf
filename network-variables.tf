@@ -6,7 +6,7 @@ variable "location" {
 
 variable "network-vnet-cidr" {
   type        = string
-  description = "The CIDR for the vm subnet"
+  description = "The CIDR for the network VNET"
 }
 
 variable "vm-subnet-cidr" {

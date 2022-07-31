@@ -25,7 +25,7 @@ resource "azurerm_network_security_group" "nginx-vm-nsg" {
   security_rule {
     name                       = "Allow-HTTP"
     description                = "Allow HTTP"
-    priority                   = 100
+    priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"

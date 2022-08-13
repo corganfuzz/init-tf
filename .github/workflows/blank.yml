@@ -11,8 +11,8 @@ jobs:
     
     steps:
 
-      - name: AZ CLI Login
-        uses: azure/login@v1
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
 

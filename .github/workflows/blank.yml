@@ -11,13 +11,10 @@ jobs:
     
     steps:
           
-      - name: Azure CLI script
-        uses: azure/CLI@v1.0.6
+      - name: Azure CLI
+        uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
-          inlineScript: |
-            az account show
-            az storage -h
 
       - name: Get KubeConfig
         run: az aks get-credentials -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.AKS_NAME }}

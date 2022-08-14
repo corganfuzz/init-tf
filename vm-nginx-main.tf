@@ -12,7 +12,7 @@ resource "random_password" "nginx-vm-password" {
   min_upper        = 2
   min_lower        = 2
   min_special      = 2
-  numeric           = true
+  numeric          = true
   special          = true
   override_special = "!@#$%&"
 }
@@ -22,7 +22,7 @@ resource "random_password" "nginx-vm-password" {
 resource "random_string" "nginx-vm-name" {
   length  = 8
   upper   = false
-  numeric  = false
+  numeric = false
   lower   = true
   special = false
 }
@@ -73,15 +73,15 @@ resource "azurerm_linux_virtual_machine" "nginx-vm" {
   source_image_reference {
     publisher = var.nginx-publisher
     offer     = var.nginx-plus-offer
-    sku       = "18.04-LTS"
+    sku       = "20_04-lts-gen2"
     version   = "latest"
   }
 
-  plan {
-    name      = "nginx-plus-ubuntu1804"
-    publisher = var.nginx-publisher
-    product   = var.nginx-plus-offer
-  }
+  # plan {
+  #   name      = "nginx-plus-ubuntu1804"
+  #   publisher = var.nginx-publisher
+  #   product   = var.nginx-plus-offer
+  # }
 
   os_disk {
     name                 = "nginx-${random_string.nginx-vm-name.result}-osdisk"
@@ -92,7 +92,7 @@ resource "azurerm_linux_virtual_machine" "nginx-vm" {
   computer_name  = "nginx-${random_string.nginx-vm-name.result}-vm"
   admin_username = var.nginx_admin_username
   admin_password = random_password.nginx-vm-password.result
-  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered)
+  custom_data    = base64encode(data.template_file.nginx-vm-cloud-init.rendered)
 
   disable_password_authentication = false
 

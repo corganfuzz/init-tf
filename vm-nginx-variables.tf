@@ -7,7 +7,7 @@ variable "nginx_vm_size" {
 variable "nginx_admin_username" {
   type        = string
   description = "VM Username"
-  default     = "admin"
+  default     = "ngadmin"
 }
 
 variable "nginx_admin_password" {
@@ -24,7 +24,7 @@ variable "nginx-publisher" {
 
 variable "nginx-plus-offer" {
   type        = string
-  description = "NGINX Offer ID"
-  default     = "UbuntuServer"
+  description = "ubuntu latest"
+  default     = "0001-com-ubuntu-server-focal"
 }
 

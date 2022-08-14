@@ -13,8 +13,8 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name = "eastTwo"
-    storage_account_name = "grgitlab"
-    container_name = "tfstate"
-    key = "test.terraform.tfstate"
+    storage_account_name = "storagetfx"
+    container_name = "containertfx"
+    key = "terraform.tfstate"
   }
 }

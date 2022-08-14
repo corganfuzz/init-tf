@@ -1,3 +1,9 @@
+# Bootstrap template bash file
+
+data "template_file" "nginx-vm-cloud-init" {
+  template = file("install-nginx.sh")
+}
+
 
 # Gen a random password
 
@@ -21,7 +27,7 @@ resource "random_string" "nginx-vm-name" {
   special = false
 }
 
-# Request and assign a public ip address and nic 
+# Request and assign a public ip address and nic
 
 # Get an static public IP
 
@@ -53,7 +59,7 @@ resource "azurerm_network_interface" "nginx-nic" {
   }
 }
 
-# Create the deifnition for the NGINX Plus VM
+# Create the definition for the NGINX VM
 
 resource "azurerm_linux_virtual_machine" "nginx-vm" {
   depends_on = [azurerm_network_interface.nginx-nic]
@@ -67,7 +73,7 @@ resource "azurerm_linux_virtual_machine" "nginx-vm" {
   source_image_reference {
     publisher = var.nginx-publisher
     offer     = var.nginx-plus-offer
-    sku       = "nginx-plus-ubuntu1804"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -86,6 +92,7 @@ resource "azurerm_linux_virtual_machine" "nginx-vm" {
   computer_name  = "nginx-${random_string.nginx-vm-name.result}-vm"
   admin_username = var.nginx_admin_username
   admin_password = random_password.nginx-vm-password.result
+  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered)
 
   disable_password_authentication = false
 

@@ -35,6 +35,8 @@ resource "azurerm_network_security_group" "nginx-vm-nsg" {
     destination_address_prefix = "*"
   }
 
+# This rule is associated with NGINX plus
+
   security_rule {
     name                       = "Allow-HTTPS"
     description                = "Allow HTTPS"

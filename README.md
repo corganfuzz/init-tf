@@ -1,5 +1,5 @@
 # init-tf
-A Basic start template for Azure configs and NGINX PLUS (With a free $200 credit Azure subscription)
+A Basic start template for Azure configs and NGINX (With a free Azure subscription that offers $200 credit for 1 month )
 
 ## Steps:
 

@@ -8,7 +8,7 @@ A Basic start template for Azure configs and NGINX (With a free Azure subscripti
 ```shell
     ./create-storage.sh
 ```
-2. Run terraform apply
+2. Run terraform
 
 ```shell
     terraform apply

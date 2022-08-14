@@ -1,8 +1,8 @@
-name: Access AKS 
+name: Access AKS
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["dev"]
   workflow_dispatch:
 
 permissions:
@@ -11,9 +11,8 @@ permissions:
 jobs:
   job:
     runs-on: ubuntu-latest
-    
+
     steps:
-          
       - name: Azure CLI
         uses: azure/login@v1
         with:
@@ -21,12 +20,12 @@ jobs:
 
       - name: Get KubeConfig
         run: az aks get-credentials -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.AKS_NAME }}
-        
+
       - name: Get Kubelogin
         run: brew install Azure/kubelogin/kubelogin
-        
+
       - name: Convert KubeConfig
         run: kubelogin convert-kubeconfig -l azurecli
-        
+
       - name: Run Kubectl
         run: kubectl get pods

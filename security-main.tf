@@ -34,6 +34,19 @@ resource "azurerm_network_security_group" "nginx-vm-nsg" {
     source_address_prefix      = "Internet"
     destination_address_prefix = "*"
   }
+
+  security_rule {
+    name                       = "Allow-HTTPS"
+    description                = "Allow HTTPS"
+    priority                   = 120
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "Internet"
+    destination_address_prefix = "*"
+  }
 }
 
 # Associate the web NSG with the subnet

@@ -13,19 +13,31 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Get KubeConfig
-        run: az aks get-credentials -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.AKS_NAME }}
-
-      - name: Get Kubelogin
-        run: brew install Azure/kubelogin/kubelogin
-
-      - name: Convert KubeConfig
-        run: kubelogin convert-kubeconfig -l azurecli
-
-      - name: Run Kubectl
-        run: kubectl get pods
+    
+      - name: Check az
+        run: az version
+        
+      - name: Check kuelogin
+        run: az version
+        
+      - name: Check kubectl
+        run: kubectl verion --output=yaml
+        
+    
+    
+#      - name: Azure CLI
+#        uses: azure/login@v1
+#        with:
+#          creds: ${{ secrets.AZURE_CREDENTIALS }}
+#
+#      - name: Get KubeConfig
+#        run: az aks get-credentials -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.AKS_NAME }}
+#
+#      - name: Get Kubelogin
+#        run: brew install Azure/kubelogin/kubelogin
+#
+#      - name: Convert KubeConfig
+#        run: kubelogin convert-kubeconfig -l azurecli
+#
+#      - name: Run Kubectl
+#        run: kubectl get pods

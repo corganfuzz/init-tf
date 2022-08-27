@@ -17,11 +17,11 @@ jobs:
       - name: Check az
         run: az version
         
-      - name: Check kuelogin
-        run: az version
+      - name: Check kubelogin
+        run: kubelogin --version
         
       - name: Check kubectl
-        run: kubectl verion --output=yaml
+        run: kubectl version --output=yaml
         
     
     
